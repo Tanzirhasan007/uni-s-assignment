@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking History - NHS</title>
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- Bootstrap JS -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+      <!-- Optional: your custom CSS -->
+      <link rel="stylesheet" href="style001.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0f7fa;
+      margin: 0;
+      padding: 0;
+      color: #004d40;
+    }
+
+    header {
+      background-color: #26a69a;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #00796b;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #b2dfdb;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .cancel-btn {
+      background-color: #ef5350;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .cancel-btn:hover {
+      background-color: #d32f2f;
+    }
+  </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#">NHS</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                      <a class="nav-link" href="index.html">Home Page</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="location.html">Our Location</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link"target="_blank"  href="book.html">Book an Appointment</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" target="_blank" href="dermatology.html">Emergency Booking</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" target="_blank"  href="doctors.html">Doctor List</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="contact.html">Contact Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="html.html">Booking Histroy</a>
+                </li>
+              </ul>
+              <span class="navbar-text text-light">
+                  <a class="nav-link d-inline text-light" href="register.html">Registration Online</a>
+              </span>
+          </div>
+      </div>
+  </nav>
+
+
+  <header>
+    <h1>NHS Appointment Booking History</h1>
+    <p>Review your past and upcoming appointments</p>
+  </header>
+
+  <div class="container">
+    <h2>Your Booking History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Type</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="bookingTable">
+        <!-- Dynamic data will appear here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const bookings = [
+      {
+        date: "2025-04-25",
+        time: "10:30 AM",
+        type: "GP Consultation",
+        location: "London Central Clinic",
+        status: "Completed"
+      },
+      {
+        date: "2025-05-01",
+        time: "02:00 PM",
+        type: "Emergency",
+        location: "King’s Cross Hospital",
+        status: "Upcoming"
+      },
+      {
+        date: "2025-03-14",
+        time: "09:00 AM",
+        type: "Vaccination",
+        location: "Westminster Health Centre",
+        status: "Completed"
+      }
+    ];
+
+    function loadBookings() {
+      const table = document.getElementById("bookingTable");
+      table.innerHTML = "";
+
+      bookings.forEach((booking, index) => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${booking.date}</td>
+          <td>${booking.time}</td>
+          <td>${booking.type}</td>
+          <td>${booking.location}</td>
+          <td>${booking.status}</td>
+          <td>${booking.status === 'Upcoming' ? `<button class='cancel-btn' onclick='cancelBooking(${index})'>Cancel</button>` : ''}</td>
+        `;
+
+        table.appendChild(row);
+      });
+    }
+
+    function cancelBooking(index) {
+      if (confirm("Are you sure you want to cancel this appointment?")) {
+        bookings[index].status = "Cancelled";
+        loadBookings();
+      }
+    }
+
+    window.onload = loadBookings;
+  </script>
+</body>
+</html>

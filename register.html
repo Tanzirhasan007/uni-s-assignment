@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
         <div class="container-fluid">
@@ -37,7 +37,7 @@
                         <a class="nav-link" href="book.html">Book an Appointment</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="dermatology.html">Dermatology</a>
+                        <a class="nav-link" href="dermatology.html">Emergency Booking</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="doctors.html">Doctor List</a>
@@ -53,10 +53,82 @@
         </div>
     </nav>
 
-    <!-- Centered Content -->
-    <div class="container text-center mt-5">
-        <h1>Welcome to NHS</h1>
-        <p class="lead">Registration</p>
+    <div class="nhs-header">
+        <img src="img/logo_mob.png" alt="NHS Logo" class="nhs-logo">
+        <h1>Register with a GP Surgery</h1>
+    </div>
+
+    <form class="nhs-form">
+        <h2>Personal Details</h2>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <select id="title" name="title" required>
+                <option value="">Select</option>
+                <option value="mr">Mr</option>
+                <option value="mrs">Mrs</option>
+                <option value="miss">Miss</option>
+                <option value="ms">Ms</option>
+                <option value="dr">Dr</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first-name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+        </div>
+
+        <div class="form-group">
+            <label for="nhs-number">NHS Number (if known)</label>
+            <input type="text" id="nhs-number" name="nhs-number" pattern="[0-9]{10}">
+        </div>
+
+        <h2>Contact Information</h2>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="postcode">Postcode</label>
+            <input type="text" id="postcode" name="postcode" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+        </div>
+
+        <h2>Additional Information</h2>
+        <div class="form-group">
+            <label for="current-gp">Current GP (if any)</label>
+            <input type="text" id="current-gp" name="current-gp">
+        </div>
+
+        <div class="form-group checkbox-group">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">I consent to my data being shared with NHS services</label>
+        </div>
+
+        <button type="submit" class="nhs-button">Submit Registration</button>
+    </form>
+
+    <div class="nhs-footer">
+        <p>© NHS login. For official use only.</p>
     </div>
 
 </body>
