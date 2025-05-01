@@ -1,4 +1,4 @@
-// Sample Doctors Data
+// Sample Doctors Data (you can load from server later if needed)
 const doctors = [
     { id: 1, name: "Dr. Smith", specialty: "Cardiologist", location: "Downtown Clinic", available: true },
     { id: 2, name: "Dr. Johnson", specialty: "Neurologist", location: "City Hospital", available: true },
@@ -37,40 +37,63 @@ showLogin.addEventListener("click", (e) => {
     loginSection.style.display = "flex";
 });
 
-// Login Functionality
-loginForm.addEventListener("submit", (e) => {
+// Login Functionality (PHP)
+loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    // Simple validation (in a real app, check against a database)
     if (username && password) {
-        loginSection.style.display = "none";
-        dashboard.style.display = "block";
-        loadDoctors();
+        const res = await fetch("login.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+        });
+        const result = await res.json();
+        if (result.success) {
+            localStorage.setItem("user_id", result.user_id);
+            localStorage.setItem("username", result.username);
+            loginSection.style.display = "none";
+            dashboard.style.display = "block";
+            loadDoctors();
+        } else {
+            alert("Login failed: " + result.message);
+        }
     } else {
         alert("Please enter username and password.");
     }
 });
 
-// Signup Functionality
-signupForm.addEventListener("submit", (e) => {
+// Signup Functionality (PHP)
+signupForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const newUsername = document.getElementById("newUsername").value;
     const newPassword = document.getElementById("newPassword").value;
     const email = document.getElementById("email").value;
 
     if (newUsername && newPassword && email) {
-        alert("Account created successfully! Please login.");
-        signupSection.style.display = "none";
-        loginSection.style.display = "flex";
+        const res = await fetch("signup.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username: newUsername, password: newPassword, email })
+        });
+        const result = await res.json();
+        if (result.success) {
+            alert("Signup successful! Please log in.");
+            signupSection.style.display = "none";
+            loginSection.style.display = "flex";
+        } else {
+            alert("Signup failed: " + result.error);
+        }
     } else {
         alert("Please fill all fields.");
     }
 });
 
-// Logout Functionality
+// Logout
 logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("username");
     dashboard.style.display = "none";
     loginSection.style.display = "flex";
 });
@@ -78,7 +101,7 @@ logoutBtn.addEventListener("click", () => {
 // Load Doctors List
 function loadDoctors(filter = "") {
     doctorList.innerHTML = "";
-    const filteredDoctors = doctors.filter(doctor => 
+    const filteredDoctors = doctors.filter(doctor =>
         doctor.name.toLowerCase().includes(filter.toLowerCase()) ||
         doctor.specialty.toLowerCase().includes(filter.toLowerCase()) ||
         doctor.location.toLowerCase().includes(filter.toLowerCase())
@@ -99,7 +122,6 @@ function loadDoctors(filter = "") {
         doctorList.appendChild(doctorCard);
     });
 
-    // Add event listeners to book buttons
     document.querySelectorAll(".book-btn").forEach(btn => {
         btn.addEventListener("click", () => {
             if (btn.disabled) return;
@@ -113,16 +135,38 @@ searchBtn.addEventListener("click", () => {
     loadDoctors(searchDoctor.value);
 });
 
-// Close Modal
+// Close Booking Modal
 closeBtn.addEventListener("click", () => {
     bookingModal.style.display = "none";
 });
 
-// Confirm Booking
-document.getElementById("appointmentForm").addEventListener("submit", (e) => {
+// Confirm Appointment (PHP)
+document.getElementById("appointmentForm").addEventListener("submit", async (e) => {
     e.preventDefault();
-    bookingModal.style.display = "none";
-    confirmationModal.style.display = "flex";
+    const user_id = localStorage.getItem("user_id");
+    const patient_name = document.getElementById("patientName").value;
+    const date = document.getElementById("appointmentDate").value;
+    const time = document.getElementById("appointmentTime").value;
+    const reason = document.getElementById("reason").value;
+
+    if (!user_id) {
+        alert("You must be logged in to book an appointment.");
+        return;
+    }
+
+    const res = await fetch("book_appointment.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id, patient_name, date, time, reason })
+    });
+
+    const result = await res.json();
+    if (result.success) {
+        bookingModal.style.display = "none";
+        confirmationModal.style.display = "flex";
+    } else {
+        alert("Booking failed.");
+    }
 });
 
 // Close Confirmation Modal
