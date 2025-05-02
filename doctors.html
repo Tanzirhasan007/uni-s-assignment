@@ -12,7 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Optional: your custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style003.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -37,7 +38,7 @@
                         <a class="nav-link" href="book.html">Book an Appointment</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="dermatology.html">Dermatology</a>
+                        <a class="nav-link" href="dermatology.html">Emergency Booking</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="doctors.html">Doctor List</a>
@@ -45,6 +46,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact Us</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="html.html">Booking Histroy</a>
+                      </li>
                 </ul>
                 <span class="navbar-text text-light">
                     <a class="nav-link d-inline text-light" href="register.html">Registration Online</a>
@@ -53,11 +57,83 @@
         </div>
     </nav>
 
-    <!-- Centered Content -->
-    <div class="container text-center mt-5">
-        <h1>Welcome to NHS</h1>
-        <p class="lead">Doctors</p>
-    </div>
+    <main class="doctor-listing-container">
+        <section class="search-filters">
+            <h1>Find Your Healthcare Provider</h1>
+            
+            <div class="search-bar">
+                <input type="text" id="doctor-search" placeholder="Search by name, specialty or location...">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="filter-options">
+                <div class="filter-group">
+                    <label for="specialty-filter">Specialty:</label>
+                    <select id="specialty-filter">
+                        <option value="all">All Specialties</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="pediatrics">Pediatrics</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="orthopedics">Orthopedics</option>
+                        <option value="dermatology">Dermatology</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="location-filter">Location:</label>
+                    <select id="location-filter">
+                        <option value="all">All Locations</option>
+                        <option value="london">London</option>
+                        <option value="manchester">Manchester</option>
+                        <option value="birmingham">Birmingham</option>
+                        <option value="leeds">Leeds</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="availability-filter">Availability:</label>
+                    <select id="availability-filter">
+                        <option value="all">Any Time</option>
+                        <option value="today">Today</option>
+                        <option value="tomorrow">Tomorrow</option>
+                        <option value="this-week">This Week</option>
+                    </select>
+                </div>
+                
+                <button id="reset-filters" class="secondary-btn">Reset Filters</button>
+            </div>
+        </section>
+
+        <section class="doctor-results">
+            <div class="results-header">
+                <h2 id="results-count">24 Doctors Available</h2>
+                <div class="sort-options">
+                    <label for="sort-by">Sort by:</label>
+                    <select id="sort-by">
+                        <option value="name-asc">Name (A-Z)</option>
+                        <option value="name-desc">Name (Z-A)</option>
+                        <option value="rating">Highest Rated</option>
+                        <option value="availability">Earliest Available</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="doctor-cards" id="doctor-cards-container">
+                <!-- Doctor cards will be dynamically inserted here -->
+            </div>
+            
+            <div class="pagination">
+                <button class="pagination-btn" id="prev-page"><i class="fas fa-chevron-left"></i></button>
+                <span class="page-numbers" id="page-numbers">1 of 5</span>
+                <button class="pagination-btn" id="next-page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; NHS Health Service. All rights reserved.</p>
+    </footer>
+    <script src="doctor-listing.js"></script>
 
 </body>
 </html>
