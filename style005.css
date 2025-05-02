@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Theme Colors: Green and Sky Blue */
 body {
     margin: 0;
@@ -45,4 +46,53 @@ body {
   #mapContainer {
     margin-top: 30px;
   }
+=======
+/* Theme Colors: Green and Sky Blue */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e0f7fa; /* Sky Blue background */
+    color: #00695c; /* Dark Green text */
+  }
+  
+  header {
+    background-color: #26a69a; /* Green header */
+    padding: 20px;
+    text-align: center;
+    color: white;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  section {
+    background-color: #b2ebf2; /* Light Sky Blue background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 2px solid #26a69a;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-size: 16px;
+    color: #00695c;
+  }
+  
+  #selectedHospital {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #004d40;
+  }
+  
+  #mapContainer {
+    margin-top: 30px;
+  }
+>>>>>>> 54f11b27c440497f19de5cced7db11316006c2dc
   

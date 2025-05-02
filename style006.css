@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* NHS Contact Page Theme: Green + Sky Blue */
 
 body {
@@ -124,4 +125,132 @@ body {
     padding: 15px;
     margin-top: 50px;
   }
+=======
+/* NHS Contact Page Theme: Green + Sky Blue */
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #e0f7fa; /* Light Sky Blue background */
+    color: #00695c; /* Dark Green text */
+  }
+  
+  header {
+    background-color: #26a69a; /* Green header */
+    padding: 30px 20px;
+    text-align: center;
+    color: white;
+  }
+  
+  header p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #e0f2f1;
+  }
+  
+  main {
+    padding: 40px 20px;
+  }
+  
+  /* Info Section */
+  .info-section {
+    background-color: #b2ebf2; /* Sky Blue card */
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  }
+  
+  .info-section h2, .info-section h3 {
+    color: #00796b;
+  }
+  
+  .info-section p, .info-section ul {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .important-contacts ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .important-contacts li {
+    margin-bottom: 8px;
+  }
+  
+  .map-container {
+    margin-top: 20px;
+  }
+  
+  /* Contact Form */
+  .contact-form {
+    background-color: #b2dfdb; /* Light Greenish Blue */
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  }
+  
+  .contact-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #00796b;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #26a69a;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #ffffff;
+    color: #00695c;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #00796b;
+    background-color: #e0f2f1;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    background-color: #26a69a;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background-color: #00796b;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #26a69a;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 50px;
+  }
+>>>>>>> 54f11b27c440497f19de5cced7db11316006c2dc
   
